@@ -42,7 +42,11 @@
 	const setFilter = (filterBy, transactions) => {
 		if(filterBy == "both") {
 			return transactions;
-		} else {
+		} 
+		else if(filterBy == "trade rapes"){
+			return transactions.filter( transaction => transaction.type == "trade");
+		}
+		else {
 			return transactions.filter( transaction => transaction.type == filterBy);
 		}
 	}
@@ -192,7 +196,24 @@
 </style>
 
 <div class="transactionsParent">
+	<div class="buttons {show == "trade rapes" ? "" : "invis-buttons"}">
+		<Button class="{show == "trade rapes" ? "disabled" : ""}" color="primary" on:click={() => setShow("trade rapes")} variant="{show == "trade rapes" ? "raised" : "outlined"}" touch>
+			<Label>Trade Rapes</Label>
+		</Button>
+		<Button class="{show == "trade" ? "disabled" : ""}" color="primary" on:click={() => setShow("trade")} variant="{show == "trade" ? "raised" : "outlined"}" touch>
+			<Label>Trades</Label>
+		</Button>
+		<Button class="{show == "waiver" ? "disabled" : ""}" color="primary" on:click={() => setShow("waiver")} variant="{show == "waiver" ? "raised" : "outlined"}" touch>
+			<Label>Waivers</Label>
+		</Button>
+		<Button class="{show == "both" ? "disabled" : ""}" color="primary" on:click={() => setShow("both")} variant="{show == "both" ? "raised" : "outlined"}" touch>
+			<Label>Both</Label>
+		</Button>
+	</div>
 	<div class="buttons {show == "trade" ? "" : "invis-buttons"}">
+		<Button class="{show == "trade rapes" ? "disabled" : ""}" color="primary" on:click={() => setShow("trade rapes")} variant="{show == "trade rapes" ? "raised" : "outlined"}" touch>
+			<Label>Trade Rapes</Label>
+		</Button>
 		<Button class="{show == "trade" ? "disabled" : ""}" color="primary" on:click={() => setShow("trade")} variant="{show == "trade" ? "raised" : "outlined"}" touch>
 			<Label>Trades</Label>
 		</Button>
@@ -204,6 +225,9 @@
 		</Button>
 	</div>
 	<div class="buttons {show == "waiver" ? "" : "invis-buttons"}">
+		<Button class="{show == "trade rapes" ? "disabled" : ""}" color="primary" on:click={() => setShow("trade rapes")} variant="{show == "trade rapes" ? "raised" : "outlined"}" touch>
+			<Label>Trade Rapes</Label>
+		</Button>
 		<Button class="{show == "trade" ? "disabled" : ""}" color="primary" on:click={() => setShow("trade")} variant="{show == "trade" ? "raised" : "outlined"}" touch>
 			<Label>Trades</Label>
 		</Button>
@@ -215,6 +239,9 @@
 		</Button>
 	</div>
 	<div class="buttons {show == "both" ? "" : "invis-buttons"}">
+		<Button class="{show == "trade rapes" ? "disabled" : ""}" color="primary" on:click={() => setShow("trade rapes")} variant="{show == "trade rapes" ? "raised" : "outlined"}" touch>
+			<Label>Trade Rapes</Label>
+		</Button>
 		<Button class="{show == "trade" ? "disabled" : ""}" color="primary" on:click={() => setShow("trade")} variant="{show == "trade" ? "raised" : "outlined"}" touch>
 			<Label>Trades</Label>
 		</Button>
@@ -250,6 +277,9 @@
 		{:else if show == "trade"}
 			<!-- trades -->
 			<h5>Recent Trades</h5>
+			{:else if show == "trade rapes"}
+			<!-- trades -->
+			<h5>Worst Trades</h5>
 		{:else}
 			<!-- waiver -->
 			<h5>Recent Waivers</h5>
@@ -267,6 +297,8 @@
 
 	{#if totalTransactions == 0}
 		{#if show == "trade"}
+			<p class="empty">{query.trim() != "" ? "No trades match your search" : "Nobody has made any trades yet... that's just sad" }</p>
+		{:else if show == "trade rapes"}
 			<p class="empty">{query.trim() != "" ? "No trades match your search" : "Nobody has made any trades yet... that's just sad" }</p>
 		{:else if show == "waiver"}
 			<p class="empty">{query.trim() != "" ? "No waivers match your search" : "Nobody has made any waiver wire moves yet... that's just sad" }</p>
