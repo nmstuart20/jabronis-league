@@ -43,7 +43,7 @@
 		if(filterBy == "both") {
 			return transactions;
 		} 
-		else if(filterBy == "trade rapes"){
+		else if(filterBy == "worst trades"){
 			return transactions.filter( transaction => transaction.type == "trade");
 		}
 		else {
@@ -196,9 +196,9 @@
 </style>
 
 <div class="transactionsParent">
-	<div class="buttons {show == "trade rapes" ? "" : "invis-buttons"}">
-		<Button class="{show == "trade rapes" ? "disabled" : ""}" color="primary" on:click={() => setShow("trade rapes")} variant="{show == "trade rapes" ? "raised" : "outlined"}" touch>
-			<Label>Trade Rapes</Label>
+	<div class="buttons {show == "worst trades" ? "" : "invis-buttons"}">
+		<Button class="{show == "worst trades" ? "disabled" : ""}" color="primary" on:click={() => setShow("worst trades")} variant="{show == "worst trades" ? "raised" : "outlined"}" touch>
+			<Label>worst trades</Label>
 		</Button>
 		<Button class="{show == "trade" ? "disabled" : ""}" color="primary" on:click={() => setShow("trade")} variant="{show == "trade" ? "raised" : "outlined"}" touch>
 			<Label>Trades</Label>
@@ -211,8 +211,8 @@
 		</Button>
 	</div>
 	<div class="buttons {show == "trade" ? "" : "invis-buttons"}">
-		<Button class="{show == "trade rapes" ? "disabled" : ""}" color="primary" on:click={() => setShow("trade rapes")} variant="{show == "trade rapes" ? "raised" : "outlined"}" touch>
-			<Label>Trade Rapes</Label>
+		<Button class="{show == "worst trades" ? "disabled" : ""}" color="primary" on:click={() => setShow("worst trades")} variant="{show == "worst trades" ? "raised" : "outlined"}" touch>
+			<Label>worst trades</Label>
 		</Button>
 		<Button class="{show == "trade" ? "disabled" : ""}" color="primary" on:click={() => setShow("trade")} variant="{show == "trade" ? "raised" : "outlined"}" touch>
 			<Label>Trades</Label>
@@ -225,8 +225,8 @@
 		</Button>
 	</div>
 	<div class="buttons {show == "waiver" ? "" : "invis-buttons"}">
-		<Button class="{show == "trade rapes" ? "disabled" : ""}" color="primary" on:click={() => setShow("trade rapes")} variant="{show == "trade rapes" ? "raised" : "outlined"}" touch>
-			<Label>Trade Rapes</Label>
+		<Button class="{show == "worst trades" ? "disabled" : ""}" color="primary" on:click={() => setShow("worst trades")} variant="{show == "worst trades" ? "raised" : "outlined"}" touch>
+			<Label>worst trades</Label>
 		</Button>
 		<Button class="{show == "trade" ? "disabled" : ""}" color="primary" on:click={() => setShow("trade")} variant="{show == "trade" ? "raised" : "outlined"}" touch>
 			<Label>Trades</Label>
@@ -239,8 +239,8 @@
 		</Button>
 	</div>
 	<div class="buttons {show == "both" ? "" : "invis-buttons"}">
-		<Button class="{show == "trade rapes" ? "disabled" : ""}" color="primary" on:click={() => setShow("trade rapes")} variant="{show == "trade rapes" ? "raised" : "outlined"}" touch>
-			<Label>Trade Rapes</Label>
+		<Button class="{show == "worst trades" ? "disabled" : ""}" color="primary" on:click={() => setShow("worst trades")} variant="{show == "worst trades" ? "raised" : "outlined"}" touch>
+			<Label>worst trades</Label>
 		</Button>
 		<Button class="{show == "trade" ? "disabled" : ""}" color="primary" on:click={() => setShow("trade")} variant="{show == "trade" ? "raised" : "outlined"}" touch>
 			<Label>Trades</Label>
@@ -277,7 +277,7 @@
 		{:else if show == "trade"}
 			<!-- trades -->
 			<h5>Recent Trades</h5>
-			{:else if show == "trade rapes"}
+			{:else if show == "worst trades"}
 			<!-- trades -->
 			<h5>Worst Trades</h5>
 		{:else}
@@ -298,7 +298,7 @@
 	{#if totalTransactions == 0}
 		{#if show == "trade"}
 			<p class="empty">{query.trim() != "" ? "No trades match your search" : "Nobody has made any trades yet... that's just sad" }</p>
-		{:else if show == "trade rapes"}
+		{:else if show == "worst trades"}
 			<p class="empty">{query.trim() != "" ? "No trades match your search" : "Nobody has made any trades yet... that's just sad" }</p>
 		{:else if show == "waiver"}
 			<p class="empty">{query.trim() != "" ? "No waivers match your search" : "Nobody has made any waiver wire moves yet... that's just sad" }</p>
