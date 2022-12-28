@@ -9,7 +9,7 @@
 	import { goto } from '$app/navigation';
 	import { getLeagueTransactions, loadPlayers } from '$lib/utils/helper';
 
-	export let masterOffset = 0, show, playersInfo, query, queryPage, transactions, currentManagers, stale, perPage, postUpdate=false;
+	export let masterOffset = 0, show, playersInfo, query, queryPage, transactions, allTransactions, currentManagers, stale, perPage, postUpdate=false;
 	const oldQuery = query;
 	let page = queryPage || 0;
 
@@ -44,7 +44,8 @@
 			return transactions;
 		} 
 		else if(filterBy == "worst trades"){
-			return transactions.filter( transaction => transaction.type == "trade");
+			allTransactions = transactions.filter( transaction => transaction.type == "trade");
+			return allTransactions;
 		}
 		else {
 			return transactions.filter( transaction => transaction.type == filterBy);
